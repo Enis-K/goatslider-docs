@@ -1,0 +1,33 @@
+import { Callout } from 'nextra/components'
+
+## Dynamic Slides
+
+If you are using dynamic slides with CMS for search, navigation filters, or anything similar, you may encounter an issue where items load on the first page but not on subsequent pages. This behavior occurs due to how Webflow loads the pages by design.
+
+To fix this issue, we extended the API to support this feature in the beta version of Goat Slider. This API allows you to re-trigger the sliders so they function properly when a filter is changed and that change triggers new items to be loaded.
+
+To use the API, you need to update it to an unreleased version by modifying the `{your_slider_name} Scripts` in `🚫 {your_slider_name} Utilities` in the script folder. By default, it should look like this:
+
+```html  filename="GoatSlider Script (v1)"
+    <script type="text/javascript" src="https://cdn.goatslider.com/v1/slider.js"></script>
+```
+
+```html  filename="GoatSlider Script (v2)"
+    <script type="text/javascript" src="https://cdn.goatslider.com/v2/slider.js"></script>
+```
+
+---
+
+After switching to the v2 version, you can use the following API to re-trigger the sliders or carousels:
+
+```js
+    // To trigger the sliders run the following code
+    GoatSliderPro.Methods.InitSliders()
+
+    // To trigger the carousels run the following code
+    GoatSliderPro.Methods.InitCarousels()
+```
+
+<Callout type='info'>
+    We haven't tested all the edge cases for this one, and we don't provide support for it at the moment. However, you can explore it before the official release.
+</Callout>
